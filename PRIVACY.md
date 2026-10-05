@@ -11,4 +11,4 @@ Induku is a game that runs entirely on your device.
 
 If this policy changes, the new version will be published at this address with a new date.
 
-Contact: xola.twayise@jas.com
+Contact: twayisexola@gmail.com

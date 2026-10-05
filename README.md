@@ -4,6 +4,8 @@ A Street Fighter-style game built around Xhosa stick fighting (*ukulwa ngeentong
 
 Four fighters with isiXhosa names (Lwazi, Nomvula, Mandla and Zola) fight in two Eastern Cape arenas: the hills at sunset and Hole in the Wall (eSikhaleni) on the Wild Coast. The game has a CPU opponent with three difficulty levels, 2-player play on one keyboard and touch controls for phones.
 
+**Play it in your browser:** https://xola-twayise.github.io/Induku/ (on a phone, use **Add to Home Screen** to install it)
+
 The whole game is one HTML file of plain JavaScript and Canvas 2D, with no game engine. Every fighter, stage, effect and sound is generated in code. [Capacitor](https://capacitorjs.com) packages it as native Android and iOS apps.
 
 ## Project layout

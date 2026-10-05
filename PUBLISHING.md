@@ -45,7 +45,7 @@ The game code, the native Android and iOS projects, the icons, the splash screen
    - **Feature graphic:** 1024 × 500 PNG (ask Claude to generate one)
    - **Screenshots:** at least 2 phone screenshots. Take them from the game running on your phone.
 4. Complete the **App content** forms:
-   - **Privacy policy:** a public web link to `PRIVACY.md` (see "Hosting the privacy policy" below)
+   - **Privacy policy:** https://xola-twayise.github.io/Induku/privacy.html
    - **Ads:** no ads
    - **Data safety:** no data collected or shared
    - **Content rating:** answer the questionnaire. The game has cartoon fighting with no blood.
@@ -91,17 +91,20 @@ iOS apps can only be built on a Mac with Xcode. Your options:
 
 ---
 
-## Hosting the privacy policy (free)
-Both stores need a public web link to your privacy policy. The quickest free option is to push this repo to GitHub and turn on **GitHub Pages**. The link will look like `https://<your-username>.github.io/induku/PRIVACY`. You can also host the web build (`www/`) there, so people can play in a browser and add the game to their home screen.
+## Hosting the privacy policy and web version (free)
+GitHub Pages hosts both automatically. Every push to `main` runs `.github/workflows/pages.yml`, which rebuilds the web version and publishes it:
 
-**Before publishing,** change the contact email in `PRIVACY.md` to the address you want the public to see.
+- **Privacy policy** (use this link in both store listings): https://xola-twayise.github.io/Induku/privacy.html
+- **Play in a browser:** https://xola-twayise.github.io/Induku/. On a phone, use **Add to Home Screen** to install it like an app.
+
+To change the policy, edit `PRIVACY.md` and push.
 
 ## Checklist
 - [ ] App ID decided (`com.xolatwayise.induku` or your own)
 - [ ] isiXhosa wording checked by a fluent speaker
 - [ ] Tested on a real Android phone
 - [ ] Upload key created and backed up
-- [ ] Privacy policy online
+- [ ] Privacy policy online (turn on GitHub Pages once: repo **Settings → Pages → Source: GitHub Actions**)
 - [ ] Screenshots and feature graphic made
 - [ ] Closed test run (12 testers, 14 days)
 - [ ] iOS: Mac access, Apple Developer account, TestFlight test

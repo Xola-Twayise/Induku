@@ -65,11 +65,40 @@ self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;
   e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{const copy=res.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return res})))});
 `;
 
+// Privacy policy page (the stores need a public link to it), rendered from PRIVACY.md
+const md = await readFile(new URL('PRIVACY.md', root), 'utf8');
+const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const inline = t => esc(t).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/_(.+?)_/g, '<em>$1</em>')
+  .replace(/([\w.+-]+@[\w-]+\.[\w.]+)/g, '<a href="mailto:$1">$1</a>');
+let body = '', list = false;
+for (const line of md.split(/\r?\n/)) {
+  if (line.startsWith('- ')) { if (!list) { body += '<ul>'; list = true } body += `<li>${inline(line.slice(2))}</li>`; continue }
+  if (list) { body += '</ul>'; list = false }
+  if (line.startsWith('# ')) body += `<h1>${inline(line.slice(2))}</h1>`;
+  else if (line.trim()) body += `<p>${inline(line)}</p>`;
+}
+if (list) body += '</ul>';
+const privacy = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Induku privacy policy</title><link rel="icon" href="icons/icon-192.png"><link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--earth:#120d0a;--bone:#f3ead8;--ochre:#d9822b;--muted:#b9a88f;color-scheme:dark}
+body{margin:0;background:var(--earth);color:var(--bone);font:17px/1.6 "Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;padding:32px 16px}
+main{max-width:40em;margin:0 auto}
+h1{font-family:"Bowlby One SC",Impact,sans-serif;font-weight:400;font-size:clamp(28px,6vw,44px);line-height:1.1;margin:0 0 .4em}
+p:first-of-type{color:var(--muted)}li{margin:.4em 0}b{color:#fff}a{color:var(--ochre)}
+.beads{height:8px;margin:0 0 28px;background:repeating-linear-gradient(90deg,#b5462f 0 12px,#f3ead8 12px 24px,#23a6a0 24px 36px,#0b0907 36px 48px,#d9822b 48px 60px)}
+.back{display:inline-block;margin-top:24px}
+</style></head>
+<body><main><div class="beads"></div>${body}<a class="back" href="./">Play Induku</a></main></body></html>
+`;
+
 await rm(www, { recursive: true, force: true });
 await mkdir(www, { recursive: true });
 await writeFile(new URL('index.html', www), html);
 await writeFile(new URL('manifest.webmanifest', www), JSON.stringify(manifest, null, 2));
 await writeFile(new URL('sw.js', www), sw);
+await writeFile(new URL('privacy.html', www), privacy);
 await cp(new URL('assets/fonts/', root), new URL('fonts/', www), { recursive: true });
 await cp(new URL('assets/web-icons/', root), new URL('icons/', www), { recursive: true }).catch(() => {
   console.warn('No web icons yet: run "npm run icons" first.');
