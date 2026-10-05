@@ -1,0 +1,27 @@
+node_modules/
+www/
+.claude/
+
+# Android build output and local machine settings
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+*.apk
+*.aab
+
+# Signing keys: never commit these. Back them up somewhere safe instead.
+*.jks
+*.keystore
+keystore.properties
+
+# iOS build output
+ios/App/Pods/
+ios/App/build/
+ios/DerivedData/
+*.ipa
+xcuserdata/
+
+.DS_Store
+Thumbs.db

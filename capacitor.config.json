@@ -1,0 +1,26 @@
+{
+  "appId": "com.xolatwayise.induku",
+  "appName": "Induku",
+  "webDir": "www",
+  "backgroundColor": "#120d0a",
+  "android": {
+    "backgroundColor": "#120d0a"
+  },
+  "ios": {
+    "backgroundColor": "#120d0a",
+    "contentInset": "never"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "launchAutoHide": true,
+      "backgroundColor": "#120d0a",
+      "showSpinner": false,
+      "androidScaleType": "CENTER_CROP"
+    },
+    "StatusBar": {
+      "overlaysWebView": true,
+      "style": "DARK"
+    }
+  }
+}

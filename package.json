@@ -1,0 +1,27 @@
+{
+  "name": "induku",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Induku - a Xhosa stick-fighting game for Android, iOS and the web",
+  "scripts": {
+    "fonts": "node scripts/fetch-fonts.mjs",
+    "icons": "node scripts/make-icons.mjs",
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/build.mjs && node scripts/serve.mjs",
+    "sync": "node scripts/build.mjs && npx cap sync",
+    "android": "npm run sync && npx cap open android",
+    "ios": "npm run sync && npx cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2",
+    "@capacitor/splash-screen": "^8.0.2",
+    "@capacitor/status-bar": "^8.0.4"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.2",
+    "sharp": "^0.35.5"
+  }
+}
